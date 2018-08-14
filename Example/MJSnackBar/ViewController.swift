@@ -31,6 +31,12 @@ class ViewController: UIViewController {
         
         snackbar = MJSnackBar(onView: self.view)
         snackbar.delegate = self
+        
+        snackbar.width = 340
+        snackbar.leftSideMargins = 24
+        snackbar.needAligmentX = UI_USER_INTERFACE_IDIOM() == .phone
+        snackbar.layer.cornerRadius = 8
+        snackbar.bottomMargin = 72
     }
 }
 

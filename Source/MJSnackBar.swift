@@ -34,11 +34,17 @@ open class MJSnackBar: UIView {
     /// its height based on the content
     public var allowHeightChange: Bool = true
     
+    /// SnackBar margins aligment X
+    public var needAligmentX: Bool = true
+    
     /// SnackBar margins
     public var spaceBetweenElements: CGFloat = 24.0
     
-    /// SnackBar side margins to view
-    public var sideMargins: CGFloat = 0.0
+    /// SnackBar left side margins to view
+    public var leftSideMargins: CGFloat = 0.0
+    
+    /// SnackBar width to view
+    public var width: CGFloat = 0.0
     
     /// SnackBar bottom margin to view
     public var bottomMargin: CGFloat = 0.0
@@ -167,17 +173,11 @@ extension MJSnackBar {
         
         self.addInformationToSnackBar()
         
-        let leftConstraint = NSLayoutConstraint(item: self,
-                                                attribute: NSLayoutAttribute.leading,
+        let aligmentConstraint = NSLayoutConstraint(item: self,
+                                                attribute: self.needAligmentX ? .centerX : .leading,
                                                 relatedBy: NSLayoutRelation.equal,
-                                                toItem: view, attribute: NSLayoutAttribute.leading,
-                                                multiplier: 1, constant: self.sideMargins)
-        
-        let rightConstraint = NSLayoutConstraint(item: self,
-                                                 attribute: NSLayoutAttribute.trailing,
-                                                 relatedBy: NSLayoutRelation.equal,
-                                                 toItem: view, attribute: NSLayoutAttribute.trailing,
-                                                 multiplier: 1, constant: -self.sideMargins)
+                                                toItem: view, attribute: self.needAligmentX ? .centerX : .leading,
+                                                multiplier: 1, constant: self.needAligmentX ? 0 :  self.leftSideMargins)
         
         let heightConstraint = NSLayoutConstraint(item: self,
                                                   attribute: NSLayoutAttribute.height,
@@ -185,7 +185,13 @@ extension MJSnackBar {
                                                   toItem: nil, attribute: NSLayoutAttribute.notAnAttribute,
                                                   multiplier: 1, constant: self.snackBarDefaultHeight)
         
-        NSLayoutConstraint.activate([leftConstraint, rightConstraint, heightConstraint])
+        let widthConstraint = NSLayoutConstraint(item: self,
+                                                 attribute: NSLayoutAttribute.width,
+                                                 relatedBy: .equal,
+                                                 toItem: nil, attribute: NSLayoutAttribute.notAnAttribute,
+                                                 multiplier: 1, constant: min(UIScreen.main.bounds.size.width, width))
+        
+        NSLayoutConstraint.activate([aligmentConstraint, heightConstraint, widthConstraint])
         
         view.layoutIfNeeded()
         
