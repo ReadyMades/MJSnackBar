@@ -5,8 +5,9 @@
 //  Created by Maxime Junger on 22/01/2017.
 //  Copyright © 2017 Shakarang. All rights reserved.
 //
+import Foundation
 
-public protocol MJSnackBarDelegate: class {
+@objc public protocol MJSnackBarDelegate {
     
     /// Action triggered when the SnackBar is shown on the view.
     ///
@@ -18,7 +19,7 @@ public protocol MJSnackBarDelegate: class {
     /// - Parameters:
     ///   - data: data contained in the SnackBar
     ///   - reason: why the SnackBar disappeared
-    func snackBarDisappeared(with data: MJSnackBarData, reason: MJSnackBar.EndShowingType)
+    func snackBarDisappeared(with data: MJSnackBarData, reason: Int)
     
     /// Action triggered when the user tapped on the SnackBar
     ///

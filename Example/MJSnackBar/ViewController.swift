@@ -88,7 +88,7 @@ extension ViewController: UITableViewDelegate {
 
 extension ViewController: MJSnackBarDelegate {
     
-    func snackBarDisappeared(with data: MJSnackBarData, reason: MJSnackBar.EndShowingType) {
+    func snackBarDisappeared(with data: MJSnackBarData, reason: Int) {
         print("👻 SnackBar disappeared \(data.message) - Reason : \(reason)")
     }
     
@@ -100,7 +100,7 @@ extension ViewController: MJSnackBarDelegate {
         
         print("👆 SnackBar touched \(data.message)")
         
-        if let id = data.id {
+        if let id = data.ID {
             
             let indexPath = IndexPath(row: id, section: 0)
             
