@@ -8,7 +8,7 @@
  [![Devices](https://img.shields.io/badge/Devices-iPhone%20%7C%20iPad-brightgreen.svg)]()
  [![Doc](https://img.shields.io/cocoapods/metrics/doc-percent/MJSnackBar.svg)](https://img.shields.io/cocoapods/metrics/doc-percent/MJSnackBar.svg)
 
- MJSnackBar is a pure Swift implementation of the [Android SnackBar](https://material.io/guidelines/components/snackbars-toasts.html) which is very useful to display short informations and allow user to perform an action about it. It automatically disappear after a delay that you can set.
+ MJSnackBar is a pure Swift and Objective C implementation of the [Android SnackBar](https://material.io/guidelines/components/snackbars-toasts.html) which is very useful to display short informations and allow user to perform an action about it. It automatically disappear after a delay that you can set.
 
  ![MJSnackBar demo](Resources/presentation.gif)		
 
@@ -19,7 +19,7 @@
  it, simply add the following line to your Podfile:		     	
 
  ```ruby
-  pod "MJSnackBar"		
+  pod 'MJSnackBar', git: 'https://github.com/AleksandrKudina/MJSnackBar', branch: 'master'		
  ``` 				
 
 #### Carthage :		
@@ -51,38 +51,44 @@ However, there are some MJSnackBar properties that you can modify.
 ```Swift
     /// Animation duration
     public var animationDuration: Double = 0.4
-
+    
     /// How long the SnackBar will be shown
     public var timeSnackBarShown: Double = 2.0
-
+    
     /// SnackBar height
     public var snackBarDefaultHeight: CGFloat = 48.0
-
+    
     /// Allow the SnackBar height to automatically adjust
     /// its height based on the content
     public var allowHeightChange: Bool = true
-
+    
+    /// SnackBar margins aligment X
+    public var needAligmentX: Bool = true
+    
     /// SnackBar margins
     public var spaceBetweenElements: CGFloat = 24.0
-
-    /// SnackBar side margins to view
-    public var sideMargins: CGFloat = 0.0
-
+    
+    /// SnackBar left side margins to view
+    public var leftSideMargins: CGFloat = 0.0
+    
+    /// SnackBar width to view
+    public var width: CGFloat = 0.0
+    
     /// SnackBar bottom margin to view
     public var bottomMargin: CGFloat = 0.0
-
+    
     /// SnackBar internal content margin
     public var elementsTopBottomMargins: CGFloat = 14.0
-
+    
     /// Font of displayed message
     public var messageFont: UIFont? = nil
-
+    
     /// Font of action button
     public var actionFont: UIFont? = UIFont.boldSystemFont(ofSize: UIFont.labelFontSize)
-
+    
     /// Message text color
     public var messageColor: UIColor = .white
-
+    
     /// Action text color
     public var actionColorColor: UIColor = .red
 ```
