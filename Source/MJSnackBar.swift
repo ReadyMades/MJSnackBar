@@ -8,15 +8,19 @@
 
 import UIKit
 
-open class MJSnackBar: UIView {
-    
+
+@objc class MJSnackBarEndShowingType: NSObject {
     /// Enum to know why SnackBar disappeared : due to Timer or User action
     ///
     /// - timer: The timer ended, normal behaviour
     /// - user: The user pressed the undo button. You have to handle it
-    public enum EndShowingType {
-        case timer, overridden, user
-    }
+    static let Timer = 0
+    static let Overriden = 1
+    static let User = 2
+}
+
+@objc open class MJSnackBar: UIView {
+
     
     /// Delegate to let user create its own actions
     public weak var delegate: MJSnackBarDelegate? = nil
@@ -119,7 +123,7 @@ open class MJSnackBar: UIView {
     ///   - view: where to show the snackbar
     public func show(data: MJSnackBarData, onView view: UIView) {
         if self.isCurrentlyShown {
-                self.animate(show: false, reasonToHide: .overridden) {
+                self.animate(show: false, reasonToHide: MJSnackBarEndShowingType.Overriden) {
                 self.currentlyDisplayedData = data
                 DispatchQueue.main.async {
                     self.snackBarID += 1
@@ -143,7 +147,7 @@ open class MJSnackBar: UIView {
         
         if let data = self.currentlyDisplayedData {
             if data.action != nil && data.action!.count > 0 {
-                self.hide(afterDelay: false, reason: .user) { }
+                self.hide(afterDelay: false, reason: MJSnackBarEndShowingType.User) { }
                 self.delegate?.snackBarActionTriggered(with: data)
             }
         }
@@ -330,18 +334,15 @@ extension MJSnackBar {
         
         return actionLabel
     }
-}
-
-// MARK: - SnackBar animations
-extension MJSnackBar {
     
+// MARK: - SnackBar animations
     /// Animate the SnackBar.
     ///
     /// - Parameters:
     ///   - show: should show or hide the bar
     ///   - reasonToHide: why the bar will be hidden? timer, over, user..
     ///   - completion: Function completion to tell when the animation finished
-    fileprivate func animate(show: Bool, reasonToHide: EndShowingType = .timer, completion: @escaping () -> Void) {
+    fileprivate func animate(show: Bool, reasonToHide: Int = MJSnackBarEndShowingType.Timer , completion: @escaping () -> Void) {
         
         guard let view = self.showingOnView else {
             return
@@ -360,7 +361,7 @@ extension MJSnackBar {
                     if let data = self.currentlyDisplayedData {
                         self.delegate?.snackBarAppeared(with: data)
                     }
-                    self.hide(afterDelay: true, reason: .timer) { }
+                    self.hide(afterDelay: true, reason: MJSnackBarEndShowingType.Timer) { }
                     completion()
                 })
             } else {
@@ -385,7 +386,7 @@ extension MJSnackBar {
     /// - Parameters:
     ///   - afterDelay: Delay to wait before hiding
     ///   - reason: Why hiding
-    fileprivate func hide(afterDelay: Bool, reason: EndShowingType, completion: @escaping () -> Void) {
+    fileprivate func hide(afterDelay: Bool, reason: Int, completion: @escaping () -> Void) {
         
         let tmpID = self.snackBarID
         let tmp = self.currentlyDisplayedData
@@ -403,4 +404,10 @@ extension MJSnackBar {
             }
         }
     }
+}
+
+// MARK: - SnackBar animations
+extension MJSnackBar {
+    
+    
 }

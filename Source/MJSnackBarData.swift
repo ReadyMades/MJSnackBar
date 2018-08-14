@@ -7,7 +7,10 @@
 //
 
 /// Data to fill the MJSnackBar
-public struct MJSnackBarData {
+
+import Foundation
+
+@objc public class MJSnackBarData: NSObject {
     
     /// Message you want to display to the user
     public var message: String
@@ -16,33 +19,30 @@ public struct MJSnackBarData {
     public var action: String? = nil
     
     /// Field to help you identify what data it is
-    public var id: Int? = nil
+    public var ID: Int? = nil
     
     /// Object linked to the data displayed. Only there to help you retrieving it easily.
     public var originalObject: Any? = nil
     
-    public init(withIdentifier id: Int? = nil,
-         message: String,
-         andActionMessage action: String? = nil,
-         objectSaved originalObject: Any? = nil) {
-        self.id = id
+    public init(withIdentifier ID: Int? = nil,
+                message: String,
+                andActionMessage action: String? = nil,
+                objectSaved originalObject: Any? = nil) {
+        self.ID = ID
         self.message = message
         self.action = action
         self.originalObject = originalObject
     }
     
     /// Checking if two data are the same
-    ///
-    /// - Parameters:
-    ///   - left: left object
-    ///   - right: right object
     /// - Returns: true if they have the same content
-    public static func == (left: MJSnackBarData, right: MJSnackBarData) -> Bool {
-        if left.id == right.id
-            && left.message == right.message
-            && left.action == right.action {
+    public class func isEquals(firstData:MJSnackBarData, secondData:MJSnackBarData) -> Bool {
+        if firstData.ID == secondData.ID
+            && firstData.message == secondData.message
+            && firstData.action == secondData.action {
             return true
         }
         return false
     }
+    
 }
