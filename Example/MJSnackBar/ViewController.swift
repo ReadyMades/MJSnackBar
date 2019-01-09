@@ -100,12 +100,12 @@ extension ViewController: MJSnackBarDelegate {
         
         print("👆 SnackBar touched \(data.message)")
         
-        if let id = data.ID {
+        if let identifier = data.identifier {
             
-            let indexPath = IndexPath(row: id, section: 0)
+            let indexPath = IndexPath(row: identifier, section: 0)
             
             if let originalData = data.originalObject as? String {
-                self.dataArray.insert(originalData, at: id)
+                self.dataArray.insert(originalData, at: identifier)
             }
             
             self.examplTableView.insertRows(at: [indexPath], with: .automatic)
