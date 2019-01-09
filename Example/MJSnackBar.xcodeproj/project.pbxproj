@@ -16,7 +16,8 @@
 		79B339581E3545F000FB34CD /* MJSnackBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B339521E3545F000FB34CD /* MJSnackBar.swift */; };
 		79B339591E3545F000FB34CD /* MJSnackBarData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B339531E3545F000FB34CD /* MJSnackBarData.swift */; };
 		79B3395A1E3545F000FB34CD /* MJSnackBarDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B339541E3545F000FB34CD /* MJSnackBarDelegate.swift */; };
-		79B3395B1E3545F000FB34CD /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 79B339561E3545F000FB34CD /* Info.plist */; };
+		D7CB53A821E631E20084FF12 /* MJSnackBarEndShowingType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CB53A721E631E20084FF12 /* MJSnackBarEndShowingType.swift */; };
+		D7CB53A921E631E20084FF12 /* MJSnackBarEndShowingType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CB53A721E631E20084FF12 /* MJSnackBarEndShowingType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +46,7 @@
 		79B339541E3545F000FB34CD /* MJSnackBarDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MJSnackBarDelegate.swift; sourceTree = "<group>"; };
 		79B339561E3545F000FB34CD /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		79B339571E3545F000FB34CD /* MJSnackBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJSnackBar.h; sourceTree = "<group>"; };
+		D7CB53A721E631E20084FF12 /* MJSnackBarEndShowingType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MJSnackBarEndShowingType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +131,7 @@
 				79B339521E3545F000FB34CD /* MJSnackBar.swift */,
 				79B339531E3545F000FB34CD /* MJSnackBarData.swift */,
 				79B339541E3545F000FB34CD /* MJSnackBarDelegate.swift */,
+				D7CB53A721E631E20084FF12 /* MJSnackBarEndShowingType.swift */,
 				79B339551E3545F000FB34CD /* Supporting Files */,
 			);
 			name = Source;
@@ -195,11 +198,11 @@
 				TargetAttributes = {
 					607FACCF1AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
-						LastSwiftMigration = 0820;
+						LastSwiftMigration = 1010;
 					};
 					607FACE41AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
-						LastSwiftMigration = 0820;
+						LastSwiftMigration = 1010;
 						TestTargetID = 607FACCF1AFB9204008FA782;
 					};
 				};
@@ -228,7 +231,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				79B3395B1E3545F000FB34CD /* Info.plist in Resources */,
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
@@ -267,6 +269,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				79B339591E3545F000FB34CD /* MJSnackBarData.swift in Sources */,
+				D7CB53A821E631E20084FF12 /* MJSnackBarEndShowingType.swift in Sources */,
 				79B3395A1E3545F000FB34CD /* MJSnackBarDelegate.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
@@ -279,6 +282,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				607FACEC1AFB9204008FA782 /* Tests.swift in Sources */,
+				D7CB53A921E631E20084FF12 /* MJSnackBarEndShowingType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -411,7 +415,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "demo.Shakarang.MJSnackBar-Example";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -428,7 +432,7 @@
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "demo.Shakarang.MJSnackBar-Example";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -449,7 +453,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.2;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MJSnackBar_Example.app/MJSnackBar_Example";
 			};
 			name = Debug;
@@ -466,7 +470,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.2;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MJSnackBar_Example.app/MJSnackBar_Example";
 			};
 			name = Release;
