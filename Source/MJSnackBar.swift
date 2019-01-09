@@ -8,22 +8,10 @@
 
 import UIKit
 
-
-@objc class MJSnackBarEndShowingType: NSObject {
-    /// Enum to know why SnackBar disappeared : due to Timer or User action
-    ///
-    /// - timer: The timer ended, normal behaviour
-    /// - user: The user pressed the undo button. You have to handle it
-    static let Timer = 0
-    static let Overriden = 1
-    static let User = 2
-}
-
 @objc open class MJSnackBar: UIView {
 
-    
     /// Delegate to let user create its own actions
-    public weak var delegate: MJSnackBarDelegate? = nil
+    public weak var delegate: MJSnackBarDelegate?
     
     /// Animation duration
     public var animationDuration: Double = 0.4
@@ -57,7 +45,7 @@ import UIKit
     public var elementsTopBottomMargins: CGFloat = 14.0
     
     /// Font of displayed message
-    public var messageFont: UIFont? = nil
+    public var messageFont: UIFont?
     
     /// Font of action button
     public var actionFont: UIFont? = UIFont.boldSystemFont(ofSize: UIFont.labelFontSize)
@@ -69,7 +57,7 @@ import UIKit
     public var actionColorColor: UIColor = .red
     
     /// Current view the bar is shown on
-    fileprivate var showingOnView: UIView? = nil
+    fileprivate var showingOnView: UIView?
     
     /// SnackBar bottom constraint
     fileprivate var bottomConstraint: NSLayoutConstraint!
@@ -85,13 +73,13 @@ import UIKit
     fileprivate var snackBarID = 0
     
     /// Data displayed
-    fileprivate var currentlyDisplayedData: MJSnackBarData? = nil
+    fileprivate var currentlyDisplayedData: MJSnackBarData?
 
     public init(onView: UIView) {
         
         super.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
 
-        self.backgroundColor = UIColor(red:0.11, green:0.11, blue:0.11, alpha:0.95)
+        self.backgroundColor = UIColor(red: 0.11, green: 0.11, blue: 0.11, alpha: 0.95)
         self.showingOnView = onView
         
         // Allow user to interract with the bar
@@ -165,11 +153,9 @@ extension MJSnackBar {
             return
         }
         
-        for view in view.subviews {
-            if view is MJSnackBar {
-                self.addInformationToSnackBar()
-                return
-            }
+        for view in view.subviews where view is MJSnackBar {
+            self.addInformationToSnackBar()
+            return
         }
         
         self.translatesAutoresizingMaskIntoConstraints = false
@@ -224,15 +210,13 @@ extension MJSnackBar {
     /// - Parameter actionLabel: Action message to create a constraint with
     fileprivate func addMessageLabelToSnackBar(actionLabel: UILabel? = nil) {
         
-        for view in self.subviews {
-            if view.accessibilityIdentifier == "messageLabelSnackBar" {
-                if let messageLabel = view as? UILabel {
-                    messageLabel.textColor = self.messageColor
-                    messageLabel.text = self.currentlyDisplayedData?.message
-                    messageLabel.font = self.messageFont ?? messageLabel.font
-                    self.layoutIfNeeded()
-                    return
-                }
+        for view in self.subviews where view.accessibilityIdentifier == "messageLabelSnackBar" {
+            if let messageLabel = view as? UILabel {
+                messageLabel.textColor = self.messageColor
+                messageLabel.text = self.currentlyDisplayedData?.message
+                messageLabel.font = self.messageFont ?? messageLabel.font
+                self.layoutIfNeeded()
+                return
             }
         }
         
@@ -286,13 +270,11 @@ extension MJSnackBar {
             return nil
         }
         
-        for view in self.subviews {
-            if view.accessibilityIdentifier == "actionLabelSnackBar" {
-                if let actionLabel = view as? UILabel {
-                    actionLabel.textColor = self.actionColorColor
-                    actionLabel.text = actionString
-                    actionLabel.font = self.actionFont ?? actionLabel.font
-                }
+        for view in self.subviews where view.accessibilityIdentifier == "actionLabelSnackBar" {
+            if let actionLabel = view as? UILabel {
+                actionLabel.textColor = self.actionColorColor
+                actionLabel.text = actionString
+                actionLabel.font = self.actionFont ?? actionLabel.font
             }
         }
         
@@ -342,7 +324,7 @@ extension MJSnackBar {
     ///   - show: should show or hide the bar
     ///   - reasonToHide: why the bar will be hidden? timer, over, user..
     ///   - completion: Function completion to tell when the animation finished
-    fileprivate func animate(show: Bool, reasonToHide: Int = MJSnackBarEndShowingType.Timer , completion: @escaping () -> Void) {
+    fileprivate func animate(show: Bool, reasonToHide: Int = MJSnackBarEndShowingType.Timer, completion: @escaping () -> Void) {
         
         guard let view = self.showingOnView else {
             return
@@ -404,10 +386,4 @@ extension MJSnackBar {
             }
         }
     }
-}
-
-// MARK: - SnackBar animations
-extension MJSnackBar {
-    
-    
 }
