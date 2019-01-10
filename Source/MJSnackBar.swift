@@ -75,7 +75,7 @@ import UIKit
     /// Data displayed
     fileprivate var currentlyDisplayedData: MJSnackBarData?
 
-    init(onView: UIView) {
+    @objc init(onView: UIView) {
         
         super.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
 
@@ -89,7 +89,6 @@ import UIKit
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.snackBarTouched))
         tapGesture.numberOfTapsRequired = 1
         self.addGestureRecognizer(tapGesture)
-        
     }
     
     @objc required public init?(coder aDecoder: NSCoder) {
