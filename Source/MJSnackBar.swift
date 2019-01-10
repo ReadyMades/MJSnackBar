@@ -75,9 +75,13 @@ import UIKit
     /// Data displayed
     @objc fileprivate var currentlyDisplayedData: MJSnackBarData?
 
-    @objc public init(onView: UIView) {
+    override public init(frame: CGRect) {
+        super.init(frame: frame)
+    }
+    
+    @objc public convenience init(onView: UIView) {
         
-        super.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+        self.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
 
         self.backgroundColor = UIColor(red: 0.11, green: 0.11, blue: 0.11, alpha: 0.95)
         self.showingOnView = onView
