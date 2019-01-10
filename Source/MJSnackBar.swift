@@ -8,90 +8,82 @@
 
 import UIKit
 
-
-@objc class MJSnackBarEndShowingType: NSObject {
-    /// Enum to know why SnackBar disappeared : due to Timer or User action
-    ///
-    /// - timer: The timer ended, normal behaviour
-    /// - user: The user pressed the undo button. You have to handle it
-    static let Timer = 0
-    static let Overriden = 1
-    static let User = 2
-}
-
 @objc open class MJSnackBar: UIView {
 
-    
     /// Delegate to let user create its own actions
-    public weak var delegate: MJSnackBarDelegate? = nil
+    @objc public weak var delegate: MJSnackBarDelegate?
     
     /// Animation duration
-    public var animationDuration: Double = 0.4
+    @objc public var animationDuration: Double = 0.4
     
     /// How long the SnackBar will be shown
-    public var timeSnackBarShown: Double = 2.0
+    @objc public var timeSnackBarShown: Double = 2.0
     
     /// SnackBar height
-    public var snackBarDefaultHeight: CGFloat = 48.0
+    @objc public var snackBarDefaultHeight: CGFloat = 48.0
     
     /// Allow the SnackBar height to automatically adjust
     /// its height based on the content
-    public var allowHeightChange: Bool = true
+    @objc public var allowHeightChange: Bool = true
     
     /// SnackBar margins aligment X
-    public var needAligmentX: Bool = true
+    @objc public var needAligmentX: Bool = true
     
     /// SnackBar margins
-    public var spaceBetweenElements: CGFloat = 24.0
+    @objc public var spaceBetweenElements: CGFloat = 24.0
     
     /// SnackBar left side margins to view
-    public var leftSideMargins: CGFloat = 0.0
+    @objc public var leftSideMargins: CGFloat = 0.0
     
     /// SnackBar width to view
-    public var width: CGFloat = 0.0
+    @objc public var width: CGFloat = 0.0
     
     /// SnackBar bottom margin to view
-    public var bottomMargin: CGFloat = 0.0
+    @objc public var bottomMargin: CGFloat = 0.0
     
     /// SnackBar internal content margin
-    public var elementsTopBottomMargins: CGFloat = 14.0
+    @objc public var elementsTopBottomMargins: CGFloat = 14.0
     
     /// Font of displayed message
-    public var messageFont: UIFont? = nil
+    @objc public var messageFont: UIFont?
     
     /// Font of action button
-    public var actionFont: UIFont? = UIFont.boldSystemFont(ofSize: UIFont.labelFontSize)
+    @objc public var actionFont: UIFont? = UIFont.boldSystemFont(ofSize: UIFont.labelFontSize)
     
     /// Message text color
-    public var messageColor: UIColor = .white
+    @objc public var messageColor: UIColor = .white
     
     /// Action text color
-    public var actionColorColor: UIColor = .red
+    @objc public var actionColorColor: UIColor = .red
     
     /// Current view the bar is shown on
-    fileprivate var showingOnView: UIView? = nil
+    @objc fileprivate var showingOnView: UIView?
     
     /// SnackBar bottom constraint
-    fileprivate var bottomConstraint: NSLayoutConstraint!
+    @objc fileprivate var bottomConstraint: NSLayoutConstraint!
     
     /// Constraint identifier. Used to track it
-    fileprivate var constraintIdentifier = "snackBarConstraintBottom"
+    @objc fileprivate var constraintIdentifier = "snackBarConstraintBottom"
     
     /// Used to know if there is a SnackBar displaying
-    fileprivate var isCurrentlyShown = false
+    @objc fileprivate var isCurrentlyShown = false
     
     /// Used to know the number of SnackBar displayed.
     /// Also used for removing the view.
-    fileprivate var snackBarID = 0
+    @objc fileprivate var snackBarID = 0
     
     /// Data displayed
-    fileprivate var currentlyDisplayedData: MJSnackBarData? = nil
+    @objc fileprivate var currentlyDisplayedData: MJSnackBarData?
 
-    public init(onView: UIView) {
+    override public init(frame: CGRect) {
+        super.init(frame: frame)
+    }
+    
+    @objc public convenience init(onView: UIView) {
         
-        super.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+        self.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
 
-        self.backgroundColor = UIColor(red:0.11, green:0.11, blue:0.11, alpha:0.95)
+        self.backgroundColor = UIColor(red: 0.11, green: 0.11, blue: 0.11, alpha: 0.95)
         self.showingOnView = onView
         
         // Allow user to interract with the bar
@@ -101,10 +93,9 @@ import UIKit
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.snackBarTouched))
         tapGesture.numberOfTapsRequired = 1
         self.addGestureRecognizer(tapGesture)
-        
     }
     
-    required public init?(coder aDecoder: NSCoder) {
+    @objc required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
@@ -121,10 +112,10 @@ import UIKit
     /// - Parameters:
     ///   - data: data to show
     ///   - view: where to show the snackbar
-    public func show(data: MJSnackBarData, onView view: UIView) {
+    @objc public func show(data: MJSnackBarData, onView view: UIView) {
         if self.isCurrentlyShown {
                 self.animate(show: false, reasonToHide: MJSnackBarEndShowingType.Overriden) {
-                self.currentlyDisplayedData = data
+                    self.currentlyDisplayedData = data
                 DispatchQueue.main.async {
                     self.snackBarID += 1
                     self.createSnackBar()
@@ -165,11 +156,9 @@ extension MJSnackBar {
             return
         }
         
-        for view in view.subviews {
-            if view is MJSnackBar {
-                self.addInformationToSnackBar()
-                return
-            }
+        for view in view.subviews where view is MJSnackBar {
+            self.addInformationToSnackBar()
+            return
         }
         
         self.translatesAutoresizingMaskIntoConstraints = false
@@ -179,20 +168,20 @@ extension MJSnackBar {
         
         let aligmentConstraint = NSLayoutConstraint(item: self,
                                                 attribute: self.needAligmentX ? .centerX : .leading,
-                                                relatedBy: NSLayoutRelation.equal,
+                                                relatedBy: NSLayoutConstraint.Relation.equal,
                                                 toItem: view, attribute: self.needAligmentX ? .centerX : .leading,
                                                 multiplier: 1, constant: self.needAligmentX ? 0 :  self.leftSideMargins)
         
         let heightConstraint = NSLayoutConstraint(item: self,
-                                                  attribute: NSLayoutAttribute.height,
+                                                  attribute: NSLayoutConstraint.Attribute.height,
                                                   relatedBy: self.allowHeightChange ? .greaterThanOrEqual : .equal,
-                                                  toItem: nil, attribute: NSLayoutAttribute.notAnAttribute,
+                                                  toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute,
                                                   multiplier: 1, constant: self.snackBarDefaultHeight)
         
         let widthConstraint = NSLayoutConstraint(item: self,
-                                                 attribute: NSLayoutAttribute.width,
+                                                 attribute: NSLayoutConstraint.Attribute.width,
                                                  relatedBy: .equal,
-                                                 toItem: nil, attribute: NSLayoutAttribute.notAnAttribute,
+                                                 toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute,
                                                  multiplier: 1, constant: min(UIScreen.main.bounds.size.width, width))
         
         NSLayoutConstraint.activate([aligmentConstraint, heightConstraint, widthConstraint])
@@ -200,9 +189,9 @@ extension MJSnackBar {
         view.layoutIfNeeded()
         
         self.bottomConstraint = NSLayoutConstraint(item: self,
-                                                   attribute: NSLayoutAttribute.bottom,
-                                                   relatedBy: NSLayoutRelation.equal,
-                                                   toItem: view, attribute: NSLayoutAttribute.bottom,
+                                                   attribute: NSLayoutConstraint.Attribute.bottom,
+                                                   relatedBy: NSLayoutConstraint.Relation.equal,
+                                                   toItem: view, attribute: NSLayoutConstraint.Attribute.bottom,
                                                    multiplier: 1, constant: self.frame.height)
         self.bottomConstraint.identifier = self.constraintIdentifier
         NSLayoutConstraint.activate([self.bottomConstraint])
@@ -224,15 +213,13 @@ extension MJSnackBar {
     /// - Parameter actionLabel: Action message to create a constraint with
     fileprivate func addMessageLabelToSnackBar(actionLabel: UILabel? = nil) {
         
-        for view in self.subviews {
-            if view.accessibilityIdentifier == "messageLabelSnackBar" {
-                if let messageLabel = view as? UILabel {
-                    messageLabel.textColor = self.messageColor
-                    messageLabel.text = self.currentlyDisplayedData?.message
-                    messageLabel.font = self.messageFont ?? messageLabel.font
-                    self.layoutIfNeeded()
-                    return
-                }
+        for view in self.subviews where view.accessibilityIdentifier == "messageLabelSnackBar" {
+            if let messageLabel = view as? UILabel {
+                messageLabel.textColor = self.messageColor
+                messageLabel.text = self.currentlyDisplayedData?.message
+                messageLabel.font = self.messageFont ?? messageLabel.font
+                self.layoutIfNeeded()
+                return
             }
         }
         
@@ -251,27 +238,27 @@ extension MJSnackBar {
         
         // Add constraints
         let leftConstraint = NSLayoutConstraint(item: messageLabel,
-                                                attribute: NSLayoutAttribute.leading,
-                                                relatedBy: NSLayoutRelation.equal,
-                                                toItem: self, attribute: NSLayoutAttribute.leading,
+                                                attribute: NSLayoutConstraint.Attribute.leading,
+                                                relatedBy: NSLayoutConstraint.Relation.equal,
+                                                toItem: self, attribute: NSLayoutConstraint.Attribute.leading,
                                                 multiplier: 1, constant: self.spaceBetweenElements)
         
         let rightConstraint = NSLayoutConstraint(item: messageLabel,
-                                                 attribute: NSLayoutAttribute.trailing,
-                                                 relatedBy: NSLayoutRelation.equal, toItem: actionLabel ?? self,
+                                                 attribute: NSLayoutConstraint.Attribute.trailing,
+                                                 relatedBy: NSLayoutConstraint.Relation.equal, toItem: actionLabel ?? self,
                                                  attribute: actionLabel != nil ? .leading : .trailing,
                                                  multiplier: 1, constant: -self.spaceBetweenElements)
         
         let topConstraint = NSLayoutConstraint(item: messageLabel,
-                                               attribute: NSLayoutAttribute.top,
-                                               relatedBy: NSLayoutRelation.equal, toItem: self,
-                                               attribute: NSLayoutAttribute.top,
+                                               attribute: NSLayoutConstraint.Attribute.top,
+                                               relatedBy: NSLayoutConstraint.Relation.equal, toItem: self,
+                                               attribute: NSLayoutConstraint.Attribute.top,
                                                multiplier: 1, constant: self.elementsTopBottomMargins)
         
         let bottomConstraint = NSLayoutConstraint(item: messageLabel,
-                                                  attribute: NSLayoutAttribute.bottom,
-                                                  relatedBy: NSLayoutRelation.equal, toItem: self,
-                                                  attribute: NSLayoutAttribute.bottom,
+                                                  attribute: NSLayoutConstraint.Attribute.bottom,
+                                                  relatedBy: NSLayoutConstraint.Relation.equal, toItem: self,
+                                                  attribute: NSLayoutConstraint.Attribute.bottom,
                                                   multiplier: 1, constant: -self.elementsTopBottomMargins)
         
         NSLayoutConstraint.activate([leftConstraint, rightConstraint, bottomConstraint, topConstraint])
@@ -286,13 +273,11 @@ extension MJSnackBar {
             return nil
         }
         
-        for view in self.subviews {
-            if view.accessibilityIdentifier == "actionLabelSnackBar" {
-                if let actionLabel = view as? UILabel {
-                    actionLabel.textColor = self.actionColorColor
-                    actionLabel.text = actionString
-                    actionLabel.font = self.actionFont ?? actionLabel.font
-                }
+        for view in self.subviews where view.accessibilityIdentifier == "actionLabelSnackBar" {
+            if let actionLabel = view as? UILabel {
+                actionLabel.textColor = self.actionColorColor
+                actionLabel.text = actionString
+                actionLabel.font = self.actionFont ?? actionLabel.font
             }
         }
         
@@ -310,24 +295,24 @@ extension MJSnackBar {
         
         // Add constraints
         let rightConstraint = NSLayoutConstraint(item: actionLabel,
-                                                 attribute: NSLayoutAttribute.trailing,
-                                                 relatedBy: NSLayoutRelation.equal,
+                                                 attribute: NSLayoutConstraint.Attribute.trailing,
+                                                 relatedBy: NSLayoutConstraint.Relation.equal,
                                                  toItem: self,
-                                                 attribute: NSLayoutAttribute.trailing,
+                                                 attribute: NSLayoutConstraint.Attribute.trailing,
                                                  multiplier: 1, constant: -self.spaceBetweenElements)
         
         let topConstraint = NSLayoutConstraint(item: actionLabel,
-                                               attribute: NSLayoutAttribute.top,
-                                               relatedBy: NSLayoutRelation.equal,
+                                               attribute: NSLayoutConstraint.Attribute.top,
+                                               relatedBy: NSLayoutConstraint.Relation.equal,
                                                toItem: self,
-                                               attribute: NSLayoutAttribute.top,
+                                               attribute: NSLayoutConstraint.Attribute.top,
                                                multiplier: 1, constant: self.elementsTopBottomMargins)
         
         let bottomConstraint = NSLayoutConstraint(item: actionLabel,
-                                                  attribute: NSLayoutAttribute.bottom,
-                                                  relatedBy: NSLayoutRelation.equal,
+                                                  attribute: NSLayoutConstraint.Attribute.bottom,
+                                                  relatedBy: NSLayoutConstraint.Relation.equal,
                                                   toItem: self,
-                                                  attribute: NSLayoutAttribute.bottom,
+                                                  attribute: NSLayoutConstraint.Attribute.bottom,
                                                   multiplier: 1, constant: -self.elementsTopBottomMargins)
         
         NSLayoutConstraint.activate([rightConstraint, bottomConstraint, topConstraint])
@@ -342,7 +327,7 @@ extension MJSnackBar {
     ///   - show: should show or hide the bar
     ///   - reasonToHide: why the bar will be hidden? timer, over, user..
     ///   - completion: Function completion to tell when the animation finished
-    fileprivate func animate(show: Bool, reasonToHide: Int = MJSnackBarEndShowingType.Timer , completion: @escaping () -> Void) {
+    fileprivate func animate(show: Bool, reasonToHide: Int = MJSnackBarEndShowingType.Timer, completion: @escaping () -> Void) {
         
         guard let view = self.showingOnView else {
             return
@@ -404,10 +389,4 @@ extension MJSnackBar {
             }
         }
     }
-}
-
-// MARK: - SnackBar animations
-extension MJSnackBar {
-    
-    
 }

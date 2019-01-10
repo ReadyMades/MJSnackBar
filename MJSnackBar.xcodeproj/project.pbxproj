@@ -9,12 +9,14 @@
 /* Begin PBXBuildFile section */
 		794913151E3634C20029A218 /* MJSnackBar.h in Headers */ = {isa = PBXBuildFile; fileRef = 794913141E3634B80029A218 /* MJSnackBar.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		797434771E361F7400FCCFD4 /* Source in Resources */ = {isa = PBXBuildFile; fileRef = 79DDFE461D5B8BC200A2CE20 /* Source */; };
+		D7D2D7DA21E62AD300F6A35B /* MJSnackBarEndShowingType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D2D7D921E62AD300F6A35B /* MJSnackBarEndShowingType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		794913141E3634B80029A218 /* MJSnackBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MJSnackBar.h; path = Source/MJSnackBar.h; sourceTree = "<group>"; };
 		797119521D5A0849009D1D5E /* MJSnackBar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MJSnackBar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		79DDFE461D5B8BC200A2CE20 /* Source */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Source; sourceTree = SOURCE_ROOT; };
+		D7D2D7D921E62AD300F6A35B /* MJSnackBarEndShowingType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MJSnackBarEndShowingType.swift; path = Source/MJSnackBarEndShowingType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +33,7 @@
 		797119481D5A0849009D1D5E = {
 			isa = PBXGroup;
 			children = (
+				D7D2D7D921E62AD300F6A35B /* MJSnackBarEndShowingType.swift */,
 				794913141E3634B80029A218 /* MJSnackBar.h */,
 				79DDFE461D5B8BC200A2CE20 /* Source */,
 				797119531D5A0849009D1D5E /* Products */,
@@ -85,12 +88,12 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0820;
+				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = Shakarang;
 				TargetAttributes = {
 					797119511D5A0849009D1D5E = {
 						CreatedOnToolsVersion = 7.3.1;
-						LastSwiftMigration = 0820;
+						LastSwiftMigration = 1010;
 					};
 				};
 			};
@@ -144,6 +147,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D7D2D7DA21E62AD300F6A35B /* MJSnackBarEndShowingType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -159,14 +163,22 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -210,14 +222,22 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -262,7 +282,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
@@ -282,7 +302,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Shakarang.MJSnackBar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
 		};

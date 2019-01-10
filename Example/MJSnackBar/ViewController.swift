@@ -62,18 +62,18 @@ extension ViewController: UITableViewDataSource {
         return true
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         
-        if editingStyle == UITableViewCellEditingStyle.delete {
+        if editingStyle == UITableViewCell.EditingStyle.delete {
             
             let msg = "Deleted : \(dataArray[indexPath.row])"
             
-            let data = MJSnackBarData(withIdentifier: indexPath.row, message: msg, andActionMessage: "UNDO", objectSaved: dataArray[indexPath.row])
+            let data = MJSnackBarData(withIdentifier: NSNumber.init(value: indexPath.row), message: msg, andActionMessage: "UNDO", objectSaved: dataArray[indexPath.row])
             
             snackbar.show(data: data, onView: self.view)
             
             dataArray.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
+            tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
         }
     }
     
@@ -100,15 +100,12 @@ extension ViewController: MJSnackBarDelegate {
         
         print("👆 SnackBar touched \(data.message)")
         
-        if let id = data.ID {
-            
-            let indexPath = IndexPath(row: id, section: 0)
-            
-            if let originalData = data.originalObject as? String {
-                self.dataArray.insert(originalData, at: id)
-            }
-            
-            self.examplTableView.insertRows(at: [indexPath], with: .automatic)
+        let indexPath = IndexPath(row: data.identifier.intValue, section: 0)
+        
+        if let originalData = data.originalObject as? String {
+            self.dataArray.insert(originalData, at: data.identifier.intValue)
         }
+        
+        self.examplTableView.insertRows(at: [indexPath], with: .automatic)
     }
 }
