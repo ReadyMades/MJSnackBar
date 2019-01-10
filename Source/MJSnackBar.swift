@@ -57,25 +57,25 @@ import UIKit
     @objc public var actionColorColor: UIColor = .red
     
     /// Current view the bar is shown on
-    fileprivate var showingOnView: UIView?
+    @objc fileprivate var showingOnView: UIView?
     
     /// SnackBar bottom constraint
-    fileprivate var bottomConstraint: NSLayoutConstraint!
+    @objc fileprivate var bottomConstraint: NSLayoutConstraint!
     
     /// Constraint identifier. Used to track it
-    fileprivate var constraintIdentifier = "snackBarConstraintBottom"
+    @objc fileprivate var constraintIdentifier = "snackBarConstraintBottom"
     
     /// Used to know if there is a SnackBar displaying
-    fileprivate var isCurrentlyShown = false
+    @objc fileprivate var isCurrentlyShown = false
     
     /// Used to know the number of SnackBar displayed.
     /// Also used for removing the view.
-    fileprivate var snackBarID = 0
+    @objc fileprivate var snackBarID = 0
     
     /// Data displayed
-    fileprivate var currentlyDisplayedData: MJSnackBarData?
+    @objc fileprivate var currentlyDisplayedData: MJSnackBarData?
 
-    @objc init(onView: UIView) {
+    @objc public init(onView: UIView) {
         
         super.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
 
