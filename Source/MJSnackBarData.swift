@@ -19,12 +19,12 @@ import Foundation
     @objc public var action: String?
     
     /// Field to help you identify what data it is
-    @objc public var identifier: Int?
+    @objc public var identifier: NSNumber
     
     /// Object linked to the data displayed. Only there to help you retrieving it easily.
     @objc public var originalObject: Any?
     
-    @objc public init(withIdentifier identifier: Int, message: String, andActionMessage action: String, objectSaved originalObject: Any) {
+    @objc public init(withIdentifier identifier: NSNumber, message: String, andActionMessage action: String, objectSaved originalObject: Any) {
         self.identifier = identifier
         self.message = message
         self.action = action
@@ -34,7 +34,7 @@ import Foundation
     /// Checking if two data are the same
     /// - Returns: true if they have the same content
     @objc public class func isEquals(firstData: MJSnackBarData, secondData: MJSnackBarData) -> Bool {
-        if firstData.identifier == secondData.identifier
+        if firstData.identifier.isEqual(to: secondData.identifier)
             && firstData.message == secondData.message
             && firstData.action == secondData.action {
             return true

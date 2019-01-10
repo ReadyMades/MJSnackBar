@@ -68,7 +68,7 @@ extension ViewController: UITableViewDataSource {
             
             let msg = "Deleted : \(dataArray[indexPath.row])"
             
-            let data = MJSnackBarData(withIdentifier: indexPath.row, message: msg, andActionMessage: "UNDO", objectSaved: dataArray[indexPath.row])
+            let data = MJSnackBarData(withIdentifier: NSNumber.init(value: indexPath.row), message: msg, andActionMessage: "UNDO", objectSaved: dataArray[indexPath.row])
             
             snackbar.show(data: data, onView: self.view)
             
@@ -100,15 +100,12 @@ extension ViewController: MJSnackBarDelegate {
         
         print("👆 SnackBar touched \(data.message)")
         
-        if let identifier = data.identifier {
-            
-            let indexPath = IndexPath(row: identifier, section: 0)
-            
-            if let originalData = data.originalObject as? String {
-                self.dataArray.insert(originalData, at: identifier)
-            }
-            
-            self.examplTableView.insertRows(at: [indexPath], with: .automatic)
+        let indexPath = IndexPath(row: data.identifier.intValue, section: 0)
+        
+        if let originalData = data.originalObject as? String {
+            self.dataArray.insert(originalData, at: data.identifier.intValue)
         }
+        
+        self.examplTableView.insertRows(at: [indexPath], with: .automatic)
     }
 }
