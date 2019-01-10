@@ -13,16 +13,16 @@ import Foundation
 @objc public class MJSnackBarData: NSObject {
     
     /// Message you want to display to the user
-    public var message: String
+    @objc public var message: String
     
     /// Action message shown next to the message
-    public var action: String?
+    @objc public var action: String?
     
     /// Field to help you identify what data it is
-    public var identifier: Int?
+    @objc public var identifier: Int?
     
     /// Object linked to the data displayed. Only there to help you retrieving it easily.
-    public var originalObject: Any?
+    @objc public var originalObject: Any?
     
     @objc public init(withIdentifier identifier: Int, message: String, andActionMessage action: String, objectSaved originalObject: Any) {
         self.identifier = identifier

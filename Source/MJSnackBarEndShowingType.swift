@@ -13,7 +13,7 @@ import UIKit
     ///
     /// - timer: The timer ended, normal behaviour
     /// - user: The user pressed the undo button. You have to handle it
-    static let Timer = 0
-    static let Overriden = 1
-    static let User = 2
+    @objc static let Timer = 0
+    @objc static let Overriden = 1
+    @objc static let User = 2
 }

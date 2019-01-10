@@ -11,50 +11,50 @@ import UIKit
 @objc open class MJSnackBar: UIView {
 
     /// Delegate to let user create its own actions
-    public weak var delegate: MJSnackBarDelegate?
+    @objc public weak var delegate: MJSnackBarDelegate?
     
     /// Animation duration
-    public var animationDuration: Double = 0.4
+    @objc public var animationDuration: Double = 0.4
     
     /// How long the SnackBar will be shown
-    public var timeSnackBarShown: Double = 2.0
+    @objc public var timeSnackBarShown: Double = 2.0
     
     /// SnackBar height
-    public var snackBarDefaultHeight: CGFloat = 48.0
+    @objc public var snackBarDefaultHeight: CGFloat = 48.0
     
     /// Allow the SnackBar height to automatically adjust
     /// its height based on the content
-    public var allowHeightChange: Bool = true
+    @objc public var allowHeightChange: Bool = true
     
     /// SnackBar margins aligment X
-    public var needAligmentX: Bool = true
+    @objc public var needAligmentX: Bool = true
     
     /// SnackBar margins
-    public var spaceBetweenElements: CGFloat = 24.0
+    @objc public var spaceBetweenElements: CGFloat = 24.0
     
     /// SnackBar left side margins to view
-    public var leftSideMargins: CGFloat = 0.0
+    @objc public var leftSideMargins: CGFloat = 0.0
     
     /// SnackBar width to view
-    public var width: CGFloat = 0.0
+    @objc public var width: CGFloat = 0.0
     
     /// SnackBar bottom margin to view
-    public var bottomMargin: CGFloat = 0.0
+    @objc public var bottomMargin: CGFloat = 0.0
     
     /// SnackBar internal content margin
-    public var elementsTopBottomMargins: CGFloat = 14.0
+    @objc public var elementsTopBottomMargins: CGFloat = 14.0
     
     /// Font of displayed message
-    public var messageFont: UIFont?
+    @objc public var messageFont: UIFont?
     
     /// Font of action button
-    public var actionFont: UIFont? = UIFont.boldSystemFont(ofSize: UIFont.labelFontSize)
+    @objc public var actionFont: UIFont? = UIFont.boldSystemFont(ofSize: UIFont.labelFontSize)
     
     /// Message text color
-    public var messageColor: UIColor = .white
+    @objc public var messageColor: UIColor = .white
     
     /// Action text color
-    public var actionColorColor: UIColor = .red
+    @objc public var actionColorColor: UIColor = .red
     
     /// Current view the bar is shown on
     fileprivate var showingOnView: UIView?
@@ -75,7 +75,7 @@ import UIKit
     /// Data displayed
     fileprivate var currentlyDisplayedData: MJSnackBarData?
 
-    public init(onView: UIView) {
+    @objc public init(onView: UIView) {
         
         super.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
 
@@ -92,7 +92,7 @@ import UIKit
         
     }
     
-    required public init?(coder aDecoder: NSCoder) {
+    @objc required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
@@ -109,7 +109,7 @@ import UIKit
     /// - Parameters:
     ///   - data: data to show
     ///   - view: where to show the snackbar
-    public func show(data: MJSnackBarData, onView view: UIView) {
+    @objc public func show(data: MJSnackBarData, onView view: UIView) {
         if self.isCurrentlyShown {
                 self.animate(show: false, reasonToHide: MJSnackBarEndShowingType.Overriden) {
                     self.currentlyDisplayedData = data
