@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Otr-k3-MOo">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -46,6 +45,44 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="305" y="429"/>
+        </scene>
+        <!--Example View Controller-->
+        <scene sceneID="MOZ-G8-6H6">
+            <objects>
+                <viewController id="Otr-k3-MOo" customClass="ExampleViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="6yQ-Yr-1O3"/>
+                        <viewControllerLayoutGuide type="bottom" id="sAC-9c-cnI"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="OIz-We-yZn">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="E4d-qe-bpx">
+                                <rect key="frame" x="-4" y="20" width="383" height="647"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="Otr-k3-MOo" id="1No-NE-fH7"/>
+                                    <outlet property="delegate" destination="Otr-k3-MOo" id="1KC-Bq-WGA"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="E4d-qe-bpx" firstAttribute="leading" secondItem="OIz-We-yZn" secondAttribute="leadingMargin" constant="-20" id="MM2-EA-ApA"/>
+                            <constraint firstItem="sAC-9c-cnI" firstAttribute="top" secondItem="E4d-qe-bpx" secondAttribute="bottom" id="OnY-s6-2j7"/>
+                            <constraint firstItem="E4d-qe-bpx" firstAttribute="top" secondItem="6yQ-Yr-1O3" secondAttribute="bottom" id="iSI-ch-0cT"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="E4d-qe-bpx" secondAttribute="trailing" constant="-20" id="so9-ov-NKB"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="exampleTableView" destination="E4d-qe-bpx" id="XuH-8e-cW8"/>
+                        <outlet property="view" destination="OIz-We-yZn" id="w31-5R-0ui"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="83o-KI-mSW" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="305" y="1118"/>
         </scene>
     </scenes>
 </document>

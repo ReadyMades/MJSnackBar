@@ -16,6 +16,7 @@
 		79B339581E3545F000FB34CD /* MJSnackBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B339521E3545F000FB34CD /* MJSnackBar.swift */; };
 		79B339591E3545F000FB34CD /* MJSnackBarData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B339531E3545F000FB34CD /* MJSnackBarData.swift */; };
 		79B3395A1E3545F000FB34CD /* MJSnackBarDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B339541E3545F000FB34CD /* MJSnackBarDelegate.swift */; };
+		D780365121E73E2A0033ED63 /* ExampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D780365021E73E2A0033ED63 /* ExampleViewController.m */; };
 		D7CB53A821E631E20084FF12 /* MJSnackBarEndShowingType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CB53A721E631E20084FF12 /* MJSnackBarEndShowingType.swift */; };
 		D7CB53A921E631E20084FF12 /* MJSnackBarEndShowingType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CB53A721E631E20084FF12 /* MJSnackBarEndShowingType.swift */; };
 /* End PBXBuildFile section */
@@ -46,6 +47,9 @@
 		79B339541E3545F000FB34CD /* MJSnackBarDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MJSnackBarDelegate.swift; sourceTree = "<group>"; };
 		79B339561E3545F000FB34CD /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		79B339571E3545F000FB34CD /* MJSnackBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJSnackBar.h; sourceTree = "<group>"; };
+		D780364E21E73E2A0033ED63 /* MJSnackBar_Example-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MJSnackBar_Example-Bridging-Header.h"; sourceTree = "<group>"; };
+		D780364F21E73E2A0033ED63 /* ExampleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExampleViewController.h; sourceTree = "<group>"; };
+		D780365021E73E2A0033ED63 /* ExampleViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExampleViewController.m; sourceTree = "<group>"; };
 		D7CB53A721E631E20084FF12 /* MJSnackBarEndShowingType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MJSnackBarEndShowingType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -95,6 +99,9 @@
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
 				607FACD31AFB9204008FA782 /* Supporting Files */,
+				D780364F21E73E2A0033ED63 /* ExampleViewController.h */,
+				D780365021E73E2A0033ED63 /* ExampleViewController.m */,
+				D780364E21E73E2A0033ED63 /* MJSnackBar_Example-Bridging-Header.h */,
 			);
 			name = "Example for MJSnackBar";
 			path = MJSnackBar;
@@ -273,6 +280,7 @@
 				79B3395A1E3545F000FB34CD /* MJSnackBarDelegate.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
+				D780365121E73E2A0033ED63 /* ExampleViewController.m in Sources */,
 				79B339581E3545F000FB34CD /* MJSnackBar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -423,6 +431,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/**";
 				INFOPLIST_FILE = MJSnackBar/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -431,6 +440,8 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "demo.Shakarang.MJSnackBar-Example";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "MJSnackBar/MJSnackBar_Example-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -440,6 +451,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/**";
 				INFOPLIST_FILE = MJSnackBar/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -448,6 +460,7 @@
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "demo.Shakarang.MJSnackBar-Example";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "MJSnackBar/MJSnackBar_Example-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
