@@ -57,7 +57,7 @@ import UIKit
     @objc public var actionColorColor: UIColor = .red
     
     /// Current view the bar is shown on
-    @objc fileprivate var showingOnView: UIView?
+    @objc fileprivate weak var showingOnView: UIView?
     
     /// SnackBar bottom constraint
     @objc fileprivate var bottomConstraint: NSLayoutConstraint!
