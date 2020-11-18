@@ -278,6 +278,8 @@ extension MJSnackBar {
                 actionLabel.textColor = self.actionColorColor
                 actionLabel.text = actionString
                 actionLabel.font = self.actionFont ?? actionLabel.font
+                self.layoutIfNeeded()
+                return actionLabel
             }
         }
         
