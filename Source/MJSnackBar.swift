@@ -62,6 +62,10 @@ import UIKit
     /// SnackBar bottom constraint
     @objc fileprivate var bottomConstraint: NSLayoutConstraint!
     
+    /// SnackBar frame from shown snack bar
+    /// Displayed snackbar can be not equal to self because there was another snackbar already shown on view and authors of this pod preferred to reuse it instead of removing previous and show self, so we should save frame and bottom constraint for correct animation
+    fileprivate var snackBarFrame: CGRect?
+
     /// Constraint identifier. Used to track it
     @objc fileprivate var constraintIdentifier = "snackBarConstraintBottom"
     
@@ -157,7 +161,11 @@ extension MJSnackBar {
         }
         
         for view in view.subviews where view is MJSnackBar {
+            // Get constraints and frame from existing view for later use
+            self.translatesAutoresizingMaskIntoConstraints = false
             self.addInformationToSnackBar()
+            self.bottomConstraint = (view as! MJSnackBar).bottomConstraint
+            self.snackBarFrame = view.frame
             return
         }
         
@@ -195,7 +203,7 @@ extension MJSnackBar {
                                                    multiplier: 1, constant: self.frame.height)
         self.bottomConstraint.identifier = self.constraintIdentifier
         NSLayoutConstraint.activate([self.bottomConstraint])
-
+        self.snackBarFrame = self.frame
     }
     
     /// Add all information to the SnackBar
@@ -352,7 +360,7 @@ extension MJSnackBar {
                     completion()
                 })
             } else {
-                self.bottomConstraint?.constant = self.frame.height
+                self.bottomConstraint?.constant = self.snackBarFrame?.height ?? 0
                 UIView.animate(withDuration: self.animationDuration, animations: {
                     view.layoutIfNeeded()
                 }, completion: { _ in
